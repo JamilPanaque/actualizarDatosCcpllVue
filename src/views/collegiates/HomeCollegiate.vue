@@ -48,7 +48,8 @@
             <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
           </div>
           <div class="modal-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+            <p style="text-align: justify;">• Solo serán solicitados aquellos datos estrictamente necesarios para prestar adecuadamente los servicios hacia los agremiados del Colegio de Contadores Públicos de La Libertad. <br>
+              • Todos los datos recogidos cuentan con el compromiso de confidencialidad, con las medidas de seguridad establecidas legalmente, y bajo ningún concepto son cedidos o tratados por terceras personas, físicas o jurídicas, sin el previo consentimiento del agremiado, salvo en aquellos casos en los que fuere imprescindible para el cumplimiento de las funciones de la entidad y en obligación legal de ser comunicado.</p>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" v-model="acceptedTerms" id="acceptTerms">
               <label class="form-check-label" for="acceptTerms">
