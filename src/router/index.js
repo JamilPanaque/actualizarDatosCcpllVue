@@ -6,6 +6,7 @@ import HomeCollegiate from '../views/collegiates/HomeCollegiate.vue'
 import ActualizarCollegiates1 from '../views/collegiates/ActualizarCollegiates1.vue'
 import ActualizarCollegiates2 from '../views/collegiates/ActualizarCollegiates2.vue'
 import ActualizarCollegiates3 from '../views/collegiates/AgradecimientoCollegiate.vue'
+import ActualizarCollegiates4 from '../views/collegiates/ActualizarCollegiates4.vue'
 
 
 const routes = [
@@ -40,6 +41,14 @@ const routes = [
     name: 'actualizarCollegiates3',
     component: ActualizarCollegiates3,
   },
+
+  {
+    path: '/actualizarCollegiates4/:documento',
+    name: 'actualizarCollegiates4',
+    component: ActualizarCollegiates4,
+    props: true
+  },
+
 ]
 
 

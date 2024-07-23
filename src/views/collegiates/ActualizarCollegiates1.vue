@@ -10,7 +10,7 @@
             disabled />
         </div>
         <!-- Campo Grado Académico -->
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="grado" class="form-label">Grado de Instrucción*</label>
           <select v-model="grado" class="form-select" id="grado" :class="{ 'is-invalid': !validarGrado() }">
             <option value="NULL">Seleccione su grado de Instrucción</option>
@@ -20,28 +20,25 @@
             <option value="BACHILLER EN DOCTORADO">BACHILLER EN DOCTORADO</option>
             <option value="TITULADO EN DOCTORADO">TITULADO EN DOCTORADO</option>
           </select>
-        </div>
+        </div> -->
         <!-- Campo Especialidad -->
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="especialidad" class="form-label">Especialidad*</label>
           <textarea v-model="especialidad" class="form-control" id="especialidad"
             placeholder="Ingrese sus especialidades, separadas por comas si tiene más de una"></textarea>
           <small class="form-text text-muted">Si tiene más de una especialidad, sepárelas con comas (,)</small>
-        </div>
+        </div> -->
         <!-- 2nda Carrera -->
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="segCarrera" class="form-label">Segunda Profesión</label>
           <select v-model="segCarrera" class="form-select" id="segCarrera">
             <option value=null>Seleccione su grado de Instrucción</option>
             <option value="ADMINISTRACION">Administración</option>
             <option value="DERECHO">Derecho</option>
             <option value="ECONOMIA">Economía</option>
-            <!-- Ciencias de la Salud -->
             <option value="CIENCIAS SALUD">Ciencias de la Salud</option>
-            <!-- Ciencias Exactas y Naturales -->
             <option value="AGRONOMIA">Agronomía</option>
             <option value="CIENCIAS-AMBIENTALES">Ciencias Ambientales</option>
-            <!-- Ingenierías y Tecnologías -->
             <option value="INGENIERIA-AGRICOLA">Ingeniería Agrícola</option>
             <option value="INGENIERIA-AGROINDUSTRIAL">Ingeniería Agroindustrial</option>
             <option value="INGENIERIA-AMBIENTAL">Ingeniería Ambiental</option>
@@ -53,25 +50,21 @@
             <option value="INGENIERIA-MECANICA">Ingeniería Mecánica</option>
             <option value="INGENIERIA-MECATRONICA">Ingeniería Mecatrónica</option>
             <option value="INGENIERIA-QUIMICA">Ingeniería Química</option>
-            <!-- Otras Carreras -->
             <option value="ARQUITECTURA">Arquitectura</option>
             <option value="CIENCIAS-COMUNICACION">Ciencias de la Comunicación</option>
           </select>
-        </div>
+        </div> -->
         <!-- 3ra Carrera -->
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="terCarrera" class="form-label">Tercera Profesión</label>
           <select v-model="terCarrera" class="form-select" id="terCarrera">
             <option value=null>Seleccione su grado de Instrucción</option>
             <option value="ADMINISTRACION">Administración</option>
             <option value="DERECHO">Derecho</option>
             <option value="ECONOMIA">Economía</option>
-            <!-- Ciencias de la Salud -->
             <option value="CIENCIAS SALUD">Ciencias de la Salud</option>
-            <!-- Ciencias Exactas y Naturales -->
             <option value="AGRONOMIA">Agronomía</option>
             <option value="CIENCIAS-AMBIENTALES">Ciencias Ambientales</option>
-            <!-- Ingenierías y Tecnologías -->
             <option value="INGENIERIA-AGRICOLA">Ingeniería Agrícola</option>
             <option value="INGENIERIA-AGROINDUSTRIAL">Ingeniería Agroindustrial</option>
             <option value="INGENIERIA-AMBIENTAL">Ingeniería Ambiental</option>
@@ -83,14 +76,11 @@
             <option value="INGENIERIA-MECANICA">Ingeniería Mecánica</option>
             <option value="INGENIERIA-MECATRONICA">Ingeniería Mecatrónica</option>
             <option value="INGENIERIA-QUIMICA">Ingeniería Química</option>
-            <!-- Otras Carreras -->
             <option value="ARQUITECTURA">Arquitectura</option>
             <option value="CIENCIAS-COMUNICACION">Ciencias de la Comunicación</option>
           </select>
-        </div>
+        </div> -->
 
-      </div>
-      <div class="col-md-6">
         <div class="row">
           <!-- Campo Correo electrónico -->
           <div class="mb-3">
@@ -109,6 +99,10 @@
           </div>
           <!-- Campo Correo Electrónico -->
         </div>
+
+      </div>
+      <div class="col-md-6">
+
         <div class="row">
           <div class="col-md-6">
             <!-- Selectores de Departamento, Provincia y Distrito -->
@@ -213,14 +207,14 @@ export default {
     return {
       nombres: "",
       apellidos: "",
-      grado: "",
-      segCarrera: "",
-      terCarrera: "",
+      //grado: "",
+      //segCarrera: "",
+      //terCarrera: "",
       telefono: "",
       celular: "",
       email: "",
       direccion: "",
-      especialidad: "",
+      //especialidad: "",
       genero: "",
       departamento: "",
       provincia: "",
@@ -231,14 +225,14 @@ export default {
     };
   },
   watch: {
-    grado(newVal) {
+    // grado(newVal) {
 
-      if (newVal === "TITULADO") {
-        this.especialidad = "Contador Público Colegiado";
-      } else if (newVal !== "TITULADO" && this.especialidad === "Contador Público Colegiado") {
-        this.especialidad = "";
-      }
-    },
+    //   if (newVal === "TITULADO") {
+    //     this.especialidad = "Contador Público Colegiado";
+    //   } else if (newVal !== "TITULADO" && this.especialidad === "Contador Público Colegiado") {
+    //     this.especialidad = "";
+    //   }
+    // },
   },
   created() {
     // Determina la URL de la API basándose en el entorno
@@ -273,20 +267,20 @@ export default {
           this.email = data.EMAIL;
           this.direccion = data.DIRECCION;
           this.genero = data.SEXO;
-          this.segCarrera = data.SEGCARRERA;
-          this.terCarrera = data.TERCARRERA;
+          //this.segCarrera = data.SEGCARRERA;
+          //this.terCarrera = data.TERCARRERA;
 
           if (data.GRADO_INSTRUCCION === "NULL") {
             this.grado = data.GRADO_INSTRUCCION;
             this.actualizarProvincias();
             this.actualizarDistritos();
           } else {
-            this.grado = data.GRADO_INSTRUCCION;
-            this.especialidad = data.ESPECIALIDAD;
+            //this.grado = data.GRADO_INSTRUCCION;
+            //this.especialidad = data.ESPECIALIDAD;
             this.departamento = data.DEPARTAMENTO;
             this.provincia = data.PROVINCIA;
             this.distrito = data.DISTRITO;
-            this.especialidad = data.ESPECIALIDAD;
+            //this.especialidad = data.ESPECIALIDAD;
           }
         })
         .catch((error) => {
@@ -307,12 +301,12 @@ export default {
     validarGenero() {
       return this.genero !== "SIN DEFINIR";
     },
-    validarGrado() {
-      return this.grado !== "NULL";
-    },
-    validarEspecialidad() {
-      return this.especialidad !== null && this.especialidad !== '';
-    },
+    // validarGrado() {
+    //   return this.grado !== "NULL";
+    // },
+    // validarEspecialidad() {
+    //   return this.especialidad !== null && this.especialidad !== '';
+    // },
     validarDepartamento() {
       return this.departamento !== "";
     },
@@ -327,9 +321,9 @@ export default {
         this.validarGenero() &&
         this.validarDepartamento() &&
         this.validarProvincia() &&
-        this.validarDistrito() &&
-        this.validarGrado() &&
-        this.validarEspecialidad()
+        this.validarDistrito()
+        //this.validarGrado() &&
+        //this.validarEspecialidad()
       );
     },
     actualizarProvincias() {
@@ -369,19 +363,19 @@ export default {
           departamento: this.departamento.toUpperCase(),
           provincia: this.provincia.toUpperCase(),
           distrito: this.distrito.toUpperCase(),
-          grado: this.grado.toUpperCase(),
-          especialidad: this.especialidad.toUpperCase(),
+          //grado: this.grado.toUpperCase(),
+          //especialidad: this.especialidad.toUpperCase(),
           documento: this.documento,
-          segCarrera: this.segCarrera === "" ? null : this.segCarrera,
-          terCarrera: this.terCarrera === "" ? null : this.terCarrera,
+          //segCarrera: this.segCarrera === "" ? null : this.segCarrera,
+          //terCarrera: this.terCarrera === "" ? null : this.terCarrera,
         })
         .then((response) => {
           Swal.fire(
             "Actualización exitosa",
-            "Tus datos han sido actualizados correctamente",
+            "Tus datos personales han sido actualizados correctamente",
             "success"
           );
-          this.$router.push(`/actualizarCollegiates2/${this.documento}`);
+          this.$router.push(`/actualizarCollegiates4/${this.documento}`);
         })
         .catch((error) => {
           console.error("Error al actualizar datos del colegiado:", error);
