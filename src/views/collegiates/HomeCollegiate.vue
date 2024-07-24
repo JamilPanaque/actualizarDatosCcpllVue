@@ -7,7 +7,10 @@
         <div class="col-md-5 order-md-1 mb-4">
           <div class="rounded p-3" style="background-color: #89CFF0;">
             <p style="text-align: justify; text-indent: 20px;">
-              El Consejo Directivo del Colegio de Contadores Públicos de La Libertad 2024-2025, se complace en invitar a Ud. a rellenar el formulario de actualización de datos para poder tener nuestros registros actualizados. Por favor, ingrese su documento de identidad en el campo correspondiente para empezar con el proceso. Su colaboración es fundamental para mejorar nuestros servicios.
+              El Consejo Directivo del Colegio de Contadores Públicos de La Libertad 2024-2025, se complace en invitar a
+              Ud. a rellenar el formulario de actualización de datos para poder tener nuestros registros actualizados.
+              Por favor, ingrese su documento de identidad en el campo correspondiente para empezar con el proceso. Su
+              colaboración es fundamental para mejorar nuestros servicios.
             </p>
             <p style="text-align: justify;">
               <i class="fas fa-calendar-alt"></i> <b>Fecha Límite: </b>Sábado 03 de Agosto<br>
@@ -21,7 +24,8 @@
             <!-- Campos de búsqueda -->
             <div class="mb-3">
               <label for="documento" class="form-label">Documento de Identidad del Miembro de la Orden</label>
-              <input v-model="documento" type="text" class="form-control" id="documento" aria-describedby="documentoHelp">
+              <input v-model="documento" type="text" class="form-control" id="documento"
+                aria-describedby="documentoHelp">
             </div>
             <div class="mb-3">
               <label for="codigo" class="form-label">Código de Colegiatura</label>
@@ -32,7 +36,8 @@
             <!-- Campos de información del colegiado (siempre deshabilitados) -->
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
-              <input v-model="nombre" type="text" class="form-control" id="nombre" aria-describedby="nombreHelp" disabled>
+              <input v-model="nombre" type="text" class="form-control" id="nombre" aria-describedby="nombreHelp"
+                disabled>
             </div>
             <button @click.prevent="irASiguiente" class="btn btn-success">Siguiente</button>
           </form>
@@ -41,15 +46,22 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true"
+      data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
           </div>
           <div class="modal-body">
-            <p style="text-align: justify;">• Solo serán solicitados aquellos datos estrictamente necesarios para prestar adecuadamente los servicios hacia los agremiados del Colegio de Contadores Públicos de La Libertad. <br>
-              • Todos los datos recogidos cuentan con el compromiso de confidencialidad, con las medidas de seguridad establecidas legalmente, y bajo ningún concepto son cedidos o tratados por terceras personas, físicas o jurídicas, sin el previo consentimiento del agremiado, salvo en aquellos casos en los que fuere imprescindible para el cumplimiento de las funciones de la entidad y en obligación legal de ser comunicado.</p>
+            <p style="text-align: justify;">• Solo serán solicitados aquellos datos estrictamente necesarios para
+              prestar adecuadamente los servicios hacia los agremiados del Colegio de Contadores Públicos de La
+              Libertad. <br>
+              • Todos los datos recogidos cuentan con el compromiso de confidencialidad, con las medidas de seguridad
+              establecidas legalmente, y bajo ningún concepto son cedidos o tratados por terceras personas, físicas o
+              jurídicas, sin el previo consentimiento del agremiado, salvo en aquellos casos en los que fuere
+              imprescindible para el cumplimiento de las funciones de la entidad y en obligación legal de ser
+              comunicado.</p>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" v-model="acceptedTerms" id="acceptTerms">
               <label class="form-check-label" for="acceptTerms">
@@ -58,7 +70,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" :disabled="!acceptedTerms" @click="closeModal">Siguiente</button>
+            <button type="button" class="btn btn-primary" :disabled="!acceptedTerms"
+              @click="closeModal">Siguiente</button>
           </div>
         </div>
       </div>
@@ -114,7 +127,7 @@ export default {
         });
         return;
       } else {
-        if (this.grado === "NULL" || this.tipoEmpleo === null) {
+        if (this.tipoEmpleo === null) {
           this.$router.push({
             name: 'actualizarCollegiates1',
             params: { documento: this.documento }
@@ -141,7 +154,13 @@ export default {
         let numeros = this.codigo.slice(3);
         this.codigoTransformado = numeros.padStart(6, '0');
       } else {
-        this.codigoTransformado = this.codigo;
+        if(this.codigo!=''){
+          this.codigoTransformado = this.codigo.padStart(6, '0');
+        }
+        else{
+          this.codigoTransformado = this.codigo
+        }
+        
       }
 
       Swal.fire({

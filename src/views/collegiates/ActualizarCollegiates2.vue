@@ -27,6 +27,7 @@
                         <option value="SOCIO">Socio</option>
                         <option value="ACCIONISTA">Accionista</option>
                         <option value="DIRECTOR">Director</option>
+                        <option value="DOCENTE">Docente</option>
                     </select>
                 </div>
                 <!-- Campo Cargo -->
@@ -146,7 +147,7 @@
         </div>
         <!-- Botón de enviar -->
         <button @click="actualizarDatosLaborales" class="btn btn-primary">
-            Guardar
+            Guardar y Finalizar
         </button>
     </div>
 </template>

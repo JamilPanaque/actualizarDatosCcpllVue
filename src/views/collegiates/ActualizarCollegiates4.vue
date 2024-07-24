@@ -33,7 +33,7 @@
                     <tbody>
                         <tr v-for="(item, index) in gradosEspecialidades" :key="index">
                             <td>{{ item.grado }}</td>
-                            <td>{{ item.especialidad.toUpperCase() }}</td>
+                            <td>{{ item.especialidad }}</td>
                             <td><button class="btn btn-danger" @click="eliminarGrado(index)">Eliminar</button></td>
                         </tr>
                     </tbody>
@@ -53,26 +53,18 @@
                         <option value="AGRONOMIA">Agronomía</option>
                         <option value="CIENCIAS-AMBIENTALES">Ciencias Ambientales</option>
                         <option value="INGENIERIA-AGRICOLA">Ingeniería Agrícola</option>
-                        <option value="INGENIERIA-AGROINDUSTRIAL">
-                            Ingeniería Agroindustrial
-                        </option>
+                        <option value="INGENIERIA-AGROINDUSTRIAL">Ingeniería Agroindustrial</option>
                         <option value="INGENIERIA-AMBIENTAL">Ingeniería Ambiental</option>
                         <option value="INGENIERIA-BIOMEDICA">Ingeniería Biomédica</option>
                         <option value="INGENIERIA-CIVIL">Ingeniería Civil</option>
                         <option value="INGENIERIA-MINAS">Ingeniería de Minas</option>
-                        <option value="INGENIERIA-SISTEMAS">
-                            Ingeniería de Sistemas/Ingeniería Informática
-                        </option>
+                        <option value="INGENIERIA-SISTEMAS">Ingeniería de Sistemas/Ingeniería Informática</option>
                         <option value="INGENIERIA-INDUSTRIAL">Ingeniería Industrial</option>
                         <option value="INGENIERIA-MECANICA">Ingeniería Mecánica</option>
-                        <option value="INGENIERIA-MECATRONICA">
-                            Ingeniería Mecatrónica
-                        </option>
+                        <option value="INGENIERIA-MECATRONICA">Ingeniería Mecatrónica</option>
                         <option value="INGENIERIA-QUIMICA">Ingeniería Química</option>
                         <option value="ARQUITECTURA">Arquitectura</option>
-                        <option value="CIENCIAS-COMUNICACION">
-                            Ciencias de la Comunicación
-                        </option>
+                        <option value="CIENCIAS-COMUNICACION">Ciencias de la Comunicación</option>
                     </select>
                 </div>
                 <!-- 3ra Carrera -->
@@ -87,35 +79,26 @@
                         <option value="AGRONOMIA">Agronomía</option>
                         <option value="CIENCIAS-AMBIENTALES">Ciencias Ambientales</option>
                         <option value="INGENIERIA-AGRICOLA">Ingeniería Agrícola</option>
-                        <option value="INGENIERIA-AGROINDUSTRIAL">
-                            Ingeniería Agroindustrial
-                        </option>
+                        <option value="INGENIERIA-AGROINDUSTRIAL">Ingeniería Agroindustrial</option>
                         <option value="INGENIERIA-AMBIENTAL">Ingeniería Ambiental</option>
                         <option value="INGENIERIA-BIOMEDICA">Ingeniería Biomédica</option>
                         <option value="INGENIERIA-CIVIL">Ingeniería Civil</option>
                         <option value="INGENIERIA-MINAS">Ingeniería de Minas</option>
-                        <option value="INGENIERIA-SISTEMAS">
-                            Ingeniería de Sistemas/Ingeniería Informática
-                        </option>
+                        <option value="INGENIERIA-SISTEMAS">Ingeniería de Sistemas/Ingeniería Informática</option>
                         <option value="INGENIERIA-INDUSTRIAL">Ingeniería Industrial</option>
                         <option value="INGENIERIA-MECANICA">Ingeniería Mecánica</option>
-                        <option value="INGENIERIA-MECATRONICA">
-                            Ingeniería Mecatrónica
-                        </option>
+                        <option value="INGENIERIA-MECATRONICA">Ingeniería Mecatrónica</option>
                         <option value="INGENIERIA-QUIMICA">Ingeniería Química</option>
                         <option value="ARQUITECTURA">Arquitectura</option>
-                        <option value="CIENCIAS-COMUNICACION">
-                            Ciencias de la Comunicación
-                        </option>
+                        <option value="CIENCIAS-COMUNICACION">Ciencias de la Comunicación</option>
                     </select>
                 </div>
-                <button @click="actualizarDatosPersonales" class="btn btn-primary" :disabled="!camposCompletos()">
+                <button @click="actualizarDatosaAcademicos" class="btn btn-primary"
+                    :disabled="!hayGradosEspecialidades">
                     Siguiente
                 </button>
             </div>
         </div>
-        <!-- Botón de enviar -->
-
     </div>
 </template>
 
@@ -139,6 +122,11 @@ export default {
             gradosEspecialidades: []
         };
     },
+    computed: {
+        hayGradosEspecialidades() {
+            return this.gradosEspecialidades.length > 0;
+        }
+    },
     watch: {
         grado(newVal) {
             if (newVal === "TITULADO") {
@@ -152,7 +140,6 @@ export default {
         },
     },
     created() {
-        // Determina la URL de la API basándose en el entorno
         if (process.env.NODE_ENV === "production") {
             this.apiUrl = "https://actualizardatosapi.ccpll.org/api";
         } else {
@@ -160,9 +147,7 @@ export default {
         }
     },
     mounted() {
-        //console.log("Documento recibido:", this.documento);
         this.obtenerDatosColegiado();
-        // Aquí puedes realizar cualquier lógica adicional basada en el valor del documento
     },
     methods: {
         obtenerDatosColegiado() {
@@ -173,31 +158,22 @@ export default {
                 showConfirmButton: false,
                 timer: 2000, // 1.5 segundos
             });
+
             axios
                 .get(`${this.apiUrl}/collegiates/${this.documento}`)
                 .then((response) => {
                     const data = response.data;
-                    // this.nombres = data.DATOS_COLEGIADO;
-                    // this.telefono = data.TELEFONOS;
-                    // this.celular = data.CELULAR;
-                    // this.email = data.EMAIL;
-                    // this.direccion = data.DIRECCION;
-                    // this.genero = data.SEXO;
                     this.segCarrera = data.SEGCARRERA;
                     this.terCarrera = data.TERCARRERA;
 
-                    // if (data.GRADO_INSTRUCCION === "NULL") {
-                    //     this.grado = data.GRADO_INSTRUCCION;
-                    //     this.actualizarProvincias();
-                    //     this.actualizarDistritos();
-                    // } else {
-                    //     //this.grado = data.GRADO_INSTRUCCION;
-                    //     //this.especialidad = data.ESPECIALIDAD;
-                    //     this.departamento = data.DEPARTAMENTO;
-                    //     this.provincia = data.PROVINCIA;
-                    //     this.distrito = data.DISTRITO;
-                    //     //this.especialidad = data.ESPECIALIDAD;
-                    // }
+                    // Solicitar grados y especialidades
+                    return axios.get(`${this.apiUrl}/collegiates/${this.documento}/especialidades`);
+                })
+                .then((response) => {
+                    this.gradosEspecialidades = response.data.map(item => ({
+                        grado: item.nombreGrado,
+                        especialidad: item.especialidad
+                    }));
                 })
                 .catch((error) => {
                     console.error("Error al obtener datos del colegiado:", error);
@@ -212,11 +188,8 @@ export default {
         },
         camposCompletos() {
             return (
-                // this.validarGenero() &&
-                // this.validarDepartamento() &&
-                // this.validarProvincia() &&
-                // this.validarDistrito()
-                this.validarGrado() && this.validarEspecialidad()
+                this.validarGrado() &&
+                this.validarEspecialidad()
             );
         },
         agregarGrado() {
@@ -228,35 +201,38 @@ export default {
                 this.grado = '';
                 this.especialidad = '';
             } else {
-                alert('Por favor, complete ambos campos.');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos incompletos',
+                    text: 'Por favor, complete ambos campos.',
+                    confirmButtonText: 'OK'
+                });
             }
         },
         eliminarGrado(index) {
             this.gradosEspecialidades.splice(index, 1);
         },
-        actualizarDatosPersonales() {
+        actualizarDatosaAcademicos() {
             axios
-                .put(`${this.apiUrl}/collegiatesActualizarDatosPersonales`, {
-                    // telefono: this.telefono,
-                    // celular: this.celular,
-                    // email: this.email.toUpperCase(),
-                    // direccion: this.direccion.toUpperCase(),
-                    // genero: this.genero.toUpperCase(),
-                    // departamento: this.departamento.toUpperCase(),
-                    // provincia: this.provincia.toUpperCase(),
-                    // distrito: this.distrito.toUpperCase(),
-                    grado: this.grado.toUpperCase(),
-                    especialidad: this.especialidad.toUpperCase(),
+                .put(`${this.apiUrl}/collegiatesActualizarDatosAcademicos`, {
                     documento: this.documento,
                     segCarrera: this.segCarrera === "" ? null : this.segCarrera,
                     terCarrera: this.terCarrera === "" ? null : this.terCarrera,
+                    gradosEspecialidades: this.gradosEspecialidades
                 })
                 .then((response) => {
-                    Swal.fire(
-                        "Actualización exitosa",
-                        "Tus datos personales han sido actualizados correctamente",
-                        "success"
-                    );
+                    Swal.fire({
+                        title: "Actualización exitosa",
+                        text: "Tus datos académicos han sido actualizados correctamente",
+                        icon: "success",
+                        timer: 1500, // Tiempo en milisegundos
+                        showConfirmButton: false, // Oculta el botón de confirmación
+                        willClose: () => {
+                            // Lógica que deseas ejecutar después de que el alerta se cierre
+                            // Por ejemplo, redirigir a otra página o actualizar el estado de la aplicación
+                            //console.log("El alerta se ha cerrado automáticamente.");
+                        }
+                    });
                     this.$router.push(`/actualizarCollegiates2/${this.documento}`);
                 })
                 .catch((error) => {
